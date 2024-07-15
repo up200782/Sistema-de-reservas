@@ -65,7 +65,7 @@ INSERT INTO reservations (customer_id, room_id, check_in_date, check_out_date)
 VALUES 
 (1, 1, '2024-07-20', '2024-07-25'),
 (2, 2, '2024-08-01', '2024-08-05'),
-(5, 3, '2024-07-12', '2021-07-13');
+(3, 3, '2024-07-12', '2021-07-13');
 
 -- Insertar datos en la tabla de pagos
 INSERT INTO payments (reservation_id, amount, payment_method)
