@@ -4,9 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+/.gradle
 
 # testing
 /coverage
+/gradle
+# Comentario de prueba.
 
 # production
 /build
