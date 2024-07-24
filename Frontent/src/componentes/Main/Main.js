@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import CardReview from '../CardReview';
 import Stepper from "../Stepper/Stepper";
-//import Responsive from "../Responsive/Responsive";
+import Responsive from "../Responsive/Responsive";
+import CardSlider from "../CardSlider";
+import CardReview from '../CardReview';
 
 //import Card
 //import { Routes, Route } from 'react-router-dom';
@@ -12,9 +13,10 @@ class Main extends Component{
 
         return(
             <>
-            <CardReview />
-            
             <Stepper></Stepper>
+            < Responsive ></Responsive>
+            <CardSlider></CardSlider>
+            <CardReview />
             </>
         ); 
     }
