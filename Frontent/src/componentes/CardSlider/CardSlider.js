@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdChevronLeft,MdChevronRight } from 'react-icons/md';
-import './Slider.css';
+import './CardSlider.css';
 
 const CardSlider =(props)=>{
     const slideLeft =()=>{

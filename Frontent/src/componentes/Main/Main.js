@@ -13,7 +13,7 @@ class Main extends Component{
 
         return(
             <>
-            <Stepper></Stepper>
+            < Stepper ></Stepper>
             < Responsive ></Responsive>
             <CardReview />
             </>
