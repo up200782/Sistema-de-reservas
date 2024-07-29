@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Stepper from "../Stepper/Stepper";
 import Responsive from "../Responsive/Responsive";
-import CardSlider from "../CardSlider";
+//import CardSlider from "../CardSlider";
 import CardReview from '../CardReview';
 
 //import Card
@@ -15,7 +15,6 @@ class Main extends Component{
             <>
             <Stepper></Stepper>
             < Responsive ></Responsive>
-            <CardSlider></CardSlider>
             <CardReview />
             </>
         ); 
