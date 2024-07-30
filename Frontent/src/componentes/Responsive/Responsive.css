@@ -1,0 +1,76 @@
+/* Importación de fuentes y reset de estilos */
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.slider-container {
+    padding: 20px;
+    background-color: #f7f7f7; /* Fondo del contenedor */
+}
+
+.slick-slider {
+    margin: 0 auto;
+    width: 90%; /* Ajuste de ancho del slider */
+}
+
+.slick-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Fondo de cada slide */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.slick-slide img {
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.slick-slide h3 {
+    text-align: center; /* Centrar el texto */
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.slick-prev, .slick-next {
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 40px;
+    color: #333;
+}
+
+.slick-dots li button:before {
+    font-size: 12px;
+    color: #333;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #555;
+}
+
+.slider-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .image-caption {
+    margin-top: 10px; /* Ajusta el espacio entre la imagen y el número según sea necesario */
+    text-align: center;
+  }
+  

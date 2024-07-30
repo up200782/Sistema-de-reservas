@@ -1,0 +1,51 @@
+/* Responsive.css */
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre tarjetas */
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+    padding: 20px; /* Espacio alrededor del contenedor de las tarjetas */
+  }
+  
+  .card {
+    max-width: 345px; /* Tamaño máximo de las tarjetas */
+    border-radius: 15px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra de la tarjeta */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    overflow: hidden; /* Asegura que la imagen no se salga de la tarjeta */
+  }
+  
+  .card:hover {
+    transform: scale(1.05); /* Efecto de aumento de la tarjeta al pasar el cursor */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Aumenta la sombra al pasar el cursor */
+  }
+  
+  .card-media {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: 200px; /* Altura fija para la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
+  }
+  
+  .card-content {
+    padding: 16px; /* Espacio interno del contenido de la tarjeta */
+  }
+  
+  .card-title {
+    font-size: 1.5rem; /* Tamaño de fuente del título */
+    font-weight: bold; /* Negrita para el título */
+    margin-bottom: 8px; /* Espacio debajo del título */
+  }
+  
+  .card-description {
+    color: #666; /* Color del texto secundario */
+  }
+  
+  .card-actions {
+    padding: 8px 16px; /* Espacio interno para las acciones de la tarjeta */
+    border-top: 1px solid #ddd; /* Línea superior para separar el contenido de las acciones */
+  }
+  
+  .card-actions .MuiButton-root {
+    text-transform: none; /* Evita que el texto del botón se convierta en mayúsculas */
+  }  
