@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Header from "../Header";
 import Stepper from "../Stepper/Stepper";
 import Responsive from "../Responsive/Responsive";
 //import CardSlider from "../CardSlider";
@@ -14,6 +15,7 @@ class Main extends Component{
 
         return(
             <>
+            < Header ></Header>
             < Stepper ></Stepper>
             < Responsive ></Responsive>
             <br></br>

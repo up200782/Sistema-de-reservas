@@ -22,8 +22,8 @@
   }
   
   .card-media {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
-    height: 200px; /* Altura fija para la imagen */
+    width: 50%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+    height: 250px; /* Altura fija para la imagen */
     object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
   }
   
@@ -43,7 +43,7 @@
   
   .card-actions {
     padding: 8px 16px; /* Espacio interno para las acciones de la tarjeta */
-    border-top: 1px solid #ddd; /* Línea superior para separar el contenido de las acciones */
+    /*border-top: 1px solid #1b1819; /* Línea superior para separar el contenido de las acciones */
   }
   
   .card-actions .MuiButton-root {

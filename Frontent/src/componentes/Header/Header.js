@@ -14,11 +14,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import './Header.css'; // Asegúrate de importar el archivo CSS
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = [
+  'Información General',
+  'Galería',
+  'Alojamiento',
+  'Restaurantes',
+  'Reuniones y Eventos',
+  'Ofertas Actuales'
+];
 
-function DrawerAppBar(props) {
+function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -29,13 +37,13 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        NombreHotel
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
+            <ListItemButton className="drawerItem" sx={{ textAlign: 'center' }}>
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -47,32 +55,34 @@ function DrawerAppBar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
+      <AppBar component="nav" className="appBar">
+        <Toolbar sx={{ flexDirection: 'column', alignItems: 'center' }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ display: { sm: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            className="logo"
+            sx={{ display: { xs: 'none', sm: 'block' } }}
           >
-            MUI
+            <img src="path-to-logo.png" alt="Logo" /> NombreHotel
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box className="navItems" sx={{ display: { xs: 'none', sm: 'flex' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
+              <a href="#" key={item} className="button">
                 {item}
-              </Button>
+              </a>
             ))}
+            <Button className="reserveButton">Reservar</Button>
           </Box>
         </Toolbar>
       </AppBar>
@@ -89,25 +99,21 @@ function DrawerAppBar(props) {
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
+          classes={{ paper: 'drawerPaper' }}
         >
           {drawer}
         </Drawer>
       </nav>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography>
-        </Typography>
+        <Typography></Typography>
       </Box>
     </Box>
   );
 }
 
-DrawerAppBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+Header.propTypes = {
   window: PropTypes.func,
 };
 
-export default DrawerAppBar;
+export default Header;
