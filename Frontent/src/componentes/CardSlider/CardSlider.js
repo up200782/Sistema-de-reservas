@@ -1,7 +1,7 @@
 import React from 'react';
 import './Slider.css';
 import { MdChevronLeft,MdChevronRight } from 'react-icons/md';
-const ReactCardSlider =(props)=>{
+const CardSlider =(props)=>{
     const slideLeft =()=>{
         var slider = document.getElementById("slider");
         slider.scrollLeft = slider.scrollLeft + 500;
@@ -32,4 +32,4 @@ const ReactCardSlider =(props)=>{
         </div>
     )
 }
-export default ReactCardSlider;
+export default CardSlider;

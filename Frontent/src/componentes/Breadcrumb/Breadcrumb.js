@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
@@ -7,7 +7,7 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function ActiveLastBreadcrumb() {
+export default function Breadcrumb() {
   return (
     <div role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
