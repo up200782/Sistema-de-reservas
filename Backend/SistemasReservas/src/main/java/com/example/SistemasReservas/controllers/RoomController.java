@@ -3,10 +3,10 @@ package com.example.SistemasReservas.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.example.SistemasReservas.model.Room;
 import com.example.SistemasReservas.service.RoomService;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -15,6 +15,11 @@ public class RoomController {
 
     @Autowired
     private RoomService roomService;
+
+    @GetMapping("/active-rooms")
+    public Collection<Room> getActiveRooms(@RequestParam String status) {
+        return roomService.findActiveRooms(status);
+    }
 
     @GetMapping
     public List<Room> getAllRooms() {

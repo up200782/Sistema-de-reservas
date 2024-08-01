@@ -24,8 +24,8 @@ public class Reservation {
 
     //Necesito que Nelly termine la configuración de Customers
     
-    //@JoinColumn(name = "customer_id", nullable = false)
-    //@ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    @ManyToOne
     @Column(name = "customer_id")
     private Integer customerId;
     

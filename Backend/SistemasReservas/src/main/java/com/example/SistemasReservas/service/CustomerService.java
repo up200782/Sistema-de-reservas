@@ -1,46 +1,30 @@
 package com.example.SistemasReservas.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.example.SistemasReservas.dto.CreateCustomerDTO;
+import com.example.SistemasReservas.dto.CustomerDTO;
+import com.example.SistemasReservas.dto.CustomerReservationDTO;
+import com.example.SistemasReservas.exception.ExcepcionRecursoNoEncontrado;
 import com.example.SistemasReservas.model.Customer;
-import com.example.SistemasReservas.repository.CustomerRepository;
 
 import java.util.List;
 
-@Service
-public class CustomerService {
+public interface CustomerService {
+    
+    List<Customer> findAll();
 
-    @Autowired
-    private CustomerRepository customerRepository;
+    List<CustomerDTO> findAllDto();
 
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
+    Customer getCustomer(long customerId) throws ExcepcionRecursoNoEncontrado;
 
-    public Customer getCustomerById(Integer id) {
-        return customerRepository.findById(id).orElse(null);
-    }
+    CustomerDTO getCustomerDTO(long customerId) throws ExcepcionRecursoNoEncontrado;
 
-    public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
-    }
+    Customer save(Customer customer);
 
-    public Customer updateCustomer(Integer id, Customer customerDetails) {
-        Customer customer = customerRepository.findById(id).orElse(null);
-        if (customer != null) {
-            customer.setFirstName(customerDetails.getFirstName());
-            customer.setLastName(customerDetails.getLastName());
-            customer.setEmail(customerDetails.getEmail());
-            customer.setPhone(customerDetails.getPhone());
-            customer.setAddress(customerDetails.getAddress());
-            customer.setRegistrationDate(customerDetails.getRegistrationDate());
-            return customerRepository.save(customer);
-        }
-        return null;
-    }
+    CustomerDTO saveDTO(CreateCustomerDTO customerDTO);
 
-    public void deleteCustomer(Integer id) {
-        customerRepository.deleteById(id);
-    }
+    void delete(long customerId);
+
+    void update(long customerId, Customer customerDetails) throws ExcepcionRecursoNoEncontrado;
+
+    CustomerReservationDTO findByIdWithReservations(long customerId) throws ExcepcionRecursoNoEncontrado;
 }
