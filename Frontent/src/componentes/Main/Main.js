@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Login from "../Login";
 import Header from "../Header";
 import Stepper from "../Stepper/Stepper";
 import Responsive from "../Responsive/Responsive";
@@ -16,6 +17,7 @@ class Main extends Component{
 
         return(
             <>
+            < Login ></Login>
             < Header ></Header>
             < Stepper ></Stepper>
             < Responsive ></Responsive>
