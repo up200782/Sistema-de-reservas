@@ -1,2 +1,2 @@
-import Form from "./Form";
-export default Form;
+import Reserva from "./Reserva";
+export default Reserva;

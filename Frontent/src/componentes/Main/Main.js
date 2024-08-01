@@ -5,7 +5,7 @@ import Responsive from "../Responsive/Responsive";
 //import CardSlider from "../CardSlider";
 import CardReview from '../CardReview';
 import AppCardSlider from "../AppCardSlider/AppCardSlider";
-import Form from "../Form";
+import Reserva from "../Form/Reserva";
 
 //import Card
 //import { Routes, Route } from 'react-router-dom';
@@ -22,7 +22,7 @@ class Main extends Component{
             <br></br>
             < AppCardSlider ></AppCardSlider>
             <CardReview />
-            < Form >S</Form>
+            < Reserva ></ Reserva>
             </>
         ); 
     }

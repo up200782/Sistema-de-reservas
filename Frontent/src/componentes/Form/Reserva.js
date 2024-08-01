@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextField, Button, Box, Grid, Typography } from '@mui/material';
-import './Form.css';
+import './Reserva.css';
 
-const Form = () => {
+const Reserva = () => {
   return (
     <Box className="reservation-details">
       <Typography variant="h6" gutterBottom>
@@ -121,4 +121,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Reserva;
