@@ -4,8 +4,10 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './ReservationBar.css';
 import Reserva from '../Reserva/Reserva'; // Asegúrate de importar tu componente Reserva
+import { useNavigate } from 'react-router-dom';
 
 const ReservationBar = () => {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [numRooms, setNumRooms] = useState(1);
@@ -40,6 +42,7 @@ const ReservationBar = () => {
       setError('');
       setShowReservation(true);
     }
+    navigate('/reservation');
   };
 
   return (

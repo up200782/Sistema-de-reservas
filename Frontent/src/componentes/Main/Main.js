@@ -6,10 +6,12 @@ import Responsive from "../Responsive/Responsive";
 import CardReview from '../CardReview';
 import AppCardSlider from "../AppCardSlider/AppCardSlider";
 //import BasicDatePicker from "../BasicDatePicker";
-import ReservationBar from "../ReservationBar.js";
+import ReservationBar from "../ReservationBar/index.js";
 import RoomOptions from "../RoomOptions/RoomOptions.js";
 import Reserva from "../Reserva/Reserva.js";
 import Habitaciones from "../Habitaciones/Habitaciones.js";
+import { Route, Routes } from "react-router-dom";
+
 
 //import Card
 //import { Routes, Route } from 'react-router-dom';
@@ -24,15 +26,19 @@ class Main extends Component{
 
         return(
             <>
-            < Header ></Header>
             <ReservationBar></ReservationBar>
+            <Routes>
+                <Route path="/reservation" element={<Reserva></Reserva>}></Route>
+                {/*
+                
+            
             < Stepper ></Stepper>
             < Responsive ></Responsive>
             <br></br>
             < AppCardSlider ></AppCardSlider>
             <CardReview />
-                    
-                    
+                */}
+            </Routes>
             </>
         ); 
     }
