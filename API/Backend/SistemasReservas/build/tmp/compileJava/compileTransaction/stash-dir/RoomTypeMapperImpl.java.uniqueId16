@@ -1,0 +1,45 @@
+package com.example.SistemasReservas.Mapper;
+
+import com.example.SistemasReservas.DTO.RoomTypeDTO;
+import com.example.SistemasReservas.model.RoomType;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2024-08-02T12:20:43-0600",
+    comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.7.jar, environment: Java 22.0.1 (Oracle Corporation)"
+)
+@Component
+public class RoomTypeMapperImpl implements RoomTypeMapper {
+
+    @Override
+    public RoomTypeDTO toDTO(RoomType roomType) {
+        if ( roomType == null ) {
+            return null;
+        }
+
+        RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
+
+        roomTypeDTO.setRoomTypeId( roomType.getRoomTypeId() );
+        roomTypeDTO.setRoomTypeName( roomType.getRoomTypeName() );
+        roomTypeDTO.setDescription( roomType.getDescription() );
+
+        return roomTypeDTO;
+    }
+
+    @Override
+    public RoomType toEntity(RoomTypeDTO roomTypeDTO) {
+        if ( roomTypeDTO == null ) {
+            return null;
+        }
+
+        RoomType roomType = new RoomType();
+
+        roomType.setRoomTypeId( roomTypeDTO.getRoomTypeId() );
+        roomType.setRoomTypeName( roomTypeDTO.getRoomTypeName() );
+        roomType.setDescription( roomTypeDTO.getDescription() );
+
+        return roomType;
+    }
+}
