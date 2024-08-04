@@ -121,7 +121,7 @@ function Navbar({ scrollToGallery, scrollToAccommodation, scrollToRestaurants })
   return (
     <AppBar position="static" sx={{ backgroundColor: '#D32F2F' }}>
       <Toolbar>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1}}>
           <img
             src={logoHotel}
             alt="Logo del hotel"

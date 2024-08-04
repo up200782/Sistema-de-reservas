@@ -2,9 +2,9 @@ import React from 'react';
 import { Box, Typography, Grid, Card, CardMedia, CardContent } from '@mui/material';
 
 const restaurantItems = [
-  { title: 'Vista al Mar', image: '/assets/Img/hotel1.jpg', description: 'Disfruta de la vista al mar mientras comes.' },
-  { title: 'Parrilla', image: '/assets/Img/hotel2.jpg', description: 'Deliciosas parrillas con una amplia variedad de carnes.' },
-  { title: 'Freddy Fazbear', image: '/assets/Img/hotel3.jpg', description: 'El restaurante temático que te sorprenderá.' },
+  { title: 'Vista al Mar', image: '/assets/Img/r1.jpg', description: 'Disfruta de la vista al mar mientras comes.' },
+  { title: 'Parrilla', image: '/assets/Img/r2.jpg', description: 'Deliciosas parrillas con una amplia variedad de carnes.' },
+  { title: 'Freddy Fazbear', image: '/assets/Img/r3.jpg', description: 'El restaurante temático que te sorprenderá.' },
 ];
 
 function Restaurants() {

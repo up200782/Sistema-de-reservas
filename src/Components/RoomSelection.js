@@ -1,53 +1,26 @@
-import React, { useState } from 'react';
-import { Box, Typography, Card, Button, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+// src/Components/RoomSelection.js
+
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
 import Carousel from 'react-material-ui-carousel';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-const roomTypes = [
-  {
-    title: 'Habitación Sencilla',
-    description: 'Confortable habitación individual con todas las comodidades necesarias para una estancia placentera.',
-    prices: [
-      { label: 'Habitación con vista al jardín', amount: '$1,000 MXN' },
-      { label: 'Habitación con vista al mar', amount: '$1,500 MXN' }
-    ],
-    images: [
-      'https://source.unsplash.com/600x400/?hotel-room-1',
-      'https://source.unsplash.com/600x400/?hotel-room-2',
-      'https://source.unsplash.com/600x400/?hotel-room-3',
-    ],
-  },
-  {
-    title: 'Habitación Doble',
-    description: 'Espaciosa habitación doble, perfecta para parejas o dos personas que buscan confort y espacio.',
-    prices: [
-      { label: 'Habitación con vista al jardín', amount: '$1,500 MXN' },
-      { label: 'Habitación con vista al mar', amount: '$2,000 MXN' }
-    ],
-    images: [
-      'https://source.unsplash.com/600x400/?hotel-room-double-1',
-      'https://source.unsplash.com/600x400/?hotel-room-double-2',
-      'https://source.unsplash.com/600x400/?hotel-room-double-3',
-    ],
-  },
-  {
-    title: 'Suite',
-    description: 'Nuestra suite ofrece el máximo lujo con instalaciones de primera clase y servicios personalizados.',
-    prices: [
-      { label: 'Habitación con vista al jardín', amount: '$2,500 MXN' },
-      { label: 'Habitación con vista al mar', amount: '$3,000 MXN' }
-    ],
-    images: [
-      'https://source.unsplash.com/600x400/?hotel-suite-1',
-      'https://source.unsplash.com/600x400/?hotel-suite-2',
-      'https://source.unsplash.com/600x400/?hotel-suite-3',
-    ],
-  },
-];
 
 function RoomSelection() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [rooms, setRooms] = useState([]);
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -57,9 +30,21 @@ function RoomSelection() {
 
   const dates = location.state?.dates?.map(date => new Date(date)) || [new Date(), new Date()];
 
-  const handleSelectRoom = (roomType, price) => {
+  useEffect(() => {
+    fetch('http://localhost:8080/api/rooms')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error fetching rooms');
+        }
+        return response.json();
+      })
+      .then(data => setRooms(data))
+      .catch(error => console.error('Error fetching rooms:', error));
+  }, []);
+
+  const handleSelectRoom = (room) => {
     if (selectedRooms.length < numRooms) {
-      setSelectedRooms([...selectedRooms, { ...roomType, selectedPrice: price }]);
+      setSelectedRooms([...selectedRooms, room]);
     }
     if (selectedRooms.length + 1 === numRooms) {
       setOpenDialog(true);
@@ -77,37 +62,28 @@ function RoomSelection() {
         Seleccione el tipo de habitación que desee ({selectedRooms.length}/{numRooms})
       </Typography>
       <Grid container spacing={4}>
-        {roomTypes.map((room, index) => (
-          <Grid item xs={12} key={index}>
-            <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Box sx={{ flex: 1 }}>
-                <Carousel navButtonsAlwaysVisible>
-                  {room.images.map((image, idx) => (
-                    <img
-                      key={idx}
-                      src={image}
-                      alt={`Slide ${idx}`}
-                      style={{ width: '100%', height: '300px', objectFit: 'cover' }}
-                    />
-                  ))}
-                </Carousel>
-              </Box>
-              <Box sx={{ flex: 1, p: 2 }}>
-                <Typography gutterBottom variant="h5" component="div">
-                  {room.title}
-                </Typography>
+        {rooms.map((room) => (
+          <Grid item xs={12} sm={6} md={4} key={room.roomId}>
+            <Card>
+              <CardMedia
+                component="img"
+                alt={room.roomType}
+                height="200"
+                image={room.imageUrl || 'https://via.placeholder.com/200'}
+                title={room.roomType}
+              />
+              <CardContent>
+                <Typography variant="h5">{room.roomType}</Typography>
                 <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
                   {room.description}
                 </Typography>
-                {room.prices.map((price, idx) => (
-                  <Box key={idx} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                    <Typography variant="body1">{price.label} - {price.amount}</Typography>
-                    <Button variant="outlined" color="primary" onClick={() => handleSelectRoom(room, price)}>
-                      Escoger
-                    </Button>
-                  </Box>
-                ))}
-              </Box>
+                <Typography variant="body1" sx={{ mb: 2 }}>
+                  Precio por noche: ${room.price} MXN
+                </Typography>
+                <Button variant="outlined" color="primary" onClick={() => handleSelectRoom(room)}>
+                  Escoger
+                </Button>
+              </CardContent>
             </Card>
           </Grid>
         ))}
@@ -119,8 +95,7 @@ function RoomSelection() {
           <ul>
             {selectedRooms.map((room, index) => (
               <li key={index}>
-                {room.title} - {room.selectedPrice.label} 
-                - Adultos: {adults[index]}, Niños: {children[index]}
+                {room.roomType} - Habitación: {room.roomNumber} - Adultos: {adults[index]}, Niños: {children[index]}
               </li>
             ))}
           </ul>

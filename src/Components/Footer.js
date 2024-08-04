@@ -16,10 +16,10 @@ function Footer() {
               Contacto
             </Typography>
             <Typography variant="body2" paragraph>
-              Aquí va la dirección y otra información de contacto relevante.
+              Para mayor información, mandar correo a:
             </Typography>
             <Typography variant="body2">
-              Más detalles de contacto, horarios de atención, etc.
+              correoprueba@gmail.com
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>

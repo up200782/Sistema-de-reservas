@@ -1,69 +1,82 @@
-import React, { useRef } from 'react';
+// src/App.js
+
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import { Container, CssBaseline } from '@mui/material';
+import {
+  Container,
+  CssBaseline,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+} from '@mui/material';
 import Navbar from './Components/Navbar';
-import Hero from './Components/Hero';
-import Featured from './Components/Featured';
-import ImageCarousel from './Components/ImageCarousel';
-import Restaurants from './Components/Restaurants';
 import Footer from './Components/Footer';
+import Login from './Components/Login';
+import FeaturedCarousel from './Components/FeaturedCarousel';
+import RestaurantList from './Components/RestaurantList';
 import RoomSelection from './Components/RoomSelection';
 import ReservationDetails from './Components/ReservationDetails';
-import Confirmation from './Components/Confirmation';
-import Gallery from './Components/Gallery';
-import Login from './Components/Login';
 
 function App() {
-  const location = useLocation(); //Hook para tener la ruta actual
+  const location = useLocation();
+  const [rooms, setRooms] = useState([]);
 
-  const galleryRef = useRef(null);
-  const accommodationRef = useRef(null);
-  const restaurantsRef = useRef(null);
+  const showNavAndFooter = location.pathname !== '/';
 
-  const scrollToSection = (ref) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  //Si se deben mostrar la Navbar y el Footer
-  const showNavAndFooter = location.pathname !== '/'; // Mostrar Navbar y Footer en todas las rutas excepto en "/"
+  useEffect(() => {
+    fetch('http://localhost:8080/api/rooms')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error fetching rooms');
+        }
+        return response.json();
+      })
+      .then(data => setRooms(data))
+      .catch(error => console.error('Error fetching rooms:', error));
+  }, []);
 
   return (
     <>
       <CssBaseline />
-      {showNavAndFooter && (
-        <Navbar
-          scrollToGallery={() => scrollToSection(galleryRef)}
-          scrollToAccommodation={() => scrollToSection(accommodationRef)}
-          scrollToRestaurants={() => scrollToSection(restaurantsRef)}
-        />
-      )}
+      {showNavAndFooter && <Navbar />}
       <Routes>
-        <Route path="/" element={<Login />} /> {/* Página principal: login */}
+        <Route path="/" element={<Login />} />
         <Route
           path="/main"
           element={
             <Container>
-              <Hero />
-              <ImageCarousel />
-              <div ref={galleryRef}>
-                <Gallery />
-              </div>
-              <div ref={accommodationRef}>
-                <Featured />
-              </div>
-              <div ref={restaurantsRef}>
-                <Restaurants />
-              </div>
+              <FeaturedCarousel />
+              <Typography variant="h4" gutterBottom sx={{ mt: 4 }}>
+                Habitaciones y suites
+              </Typography>
+              <Grid container spacing={4}>
+                {rooms.map((room) => (
+                  <Grid item key={room.roomId} xs={12} sm={6} md={4}>
+                    <Card>
+                      <CardMedia
+                        component="img"
+                        alt={room.roomType}
+                        height="140"
+                        image={room.imageUrl || 'https://via.placeholder.com/150'}
+                      />
+                      <CardContent>
+                        {/* Solo se muestra el título */}
+                        <Typography variant="h5">{room.roomType}</Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+              <RestaurantList />
             </Container>
           }
         />
         <Route path="/rooms" element={<RoomSelection />} />
         <Route path="/reservation-details" element={<ReservationDetails />} />
-        <Route path="/confirmation" element={<Confirmation />} />
       </Routes>
-      {showNavAndFooter && <Footer />} {/* Mostrar Footer solo si la ruta no es "/" */}
+      {showNavAndFooter && <Footer />}
     </>
   );
 }
