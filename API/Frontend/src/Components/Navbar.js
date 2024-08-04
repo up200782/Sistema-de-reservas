@@ -1,11 +1,16 @@
 import React from 'react';
 import { AppBar, Toolbar, Box, Button, Typography } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Reservation from './Reservation';
 import logoHotel from '../logohotel.webp';
 
 function Navbar({ scrollToGallery, scrollToAccommodation, scrollToRestaurants }) {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/main');
+  };
 
   const renderProgressBar = () => {
     const currentStep =
@@ -125,7 +130,8 @@ function Navbar({ scrollToGallery, scrollToAccommodation, scrollToRestaurants })
           <img
             src={logoHotel}
             alt="Logo del hotel"
-            style={{ height: '40px' }}
+            style={{ height: '40px', cursor: 'pointer' }}
+            onClick={handleLogoClick}
           />
         </Box>
         {location.pathname === '/rooms' || location.pathname === '/reservation-details' || location.pathname === '/confirmation'
@@ -137,3 +143,4 @@ function Navbar({ scrollToGallery, scrollToAccommodation, scrollToRestaurants })
 }
 
 export default Navbar;
+
