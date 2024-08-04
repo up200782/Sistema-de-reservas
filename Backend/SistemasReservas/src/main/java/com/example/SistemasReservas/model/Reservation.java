@@ -1,39 +1,29 @@
 package com.example.SistemasReservas.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Data
 @Table(name = "reservations")
-
+@Data
+@NoArgsConstructor
 public class Reservation {
-     @Id
-     @Column(name = "reservation_id")
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reservation_id")
     private Integer reservationId;
 
-    //Necesito que Nelly termine la configuración de Customers
-    
-    //@JoinColumn(name = "customer_id", nullable = false)
-    //@ManyToOne
-    @Column(name = "customer_id")
-    private Integer customerId;
-    
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private Customer customer;
 
-   // @ManyToOne
-   // @JoinColumn(name = "room_id", nullable = false)
-   //Cuando termine de proramar todo la descomento
-   @Column(name = "room_id")
+    @Column(name = "room_id")
     private Integer roomId;
 
     @Column(name = "reservation_date", updatable = false, nullable = false)
@@ -47,5 +37,5 @@ public class Reservation {
 
     @Column(nullable = false)
     private String status;
-    
+
 }

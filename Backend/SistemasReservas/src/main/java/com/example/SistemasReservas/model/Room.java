@@ -1,17 +1,13 @@
 package com.example.SistemasReservas.model;
+
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "rooms")
 @Data
+@NoArgsConstructor
 public class Room {
 
     @Id
@@ -29,6 +25,11 @@ public class Room {
     private Double price;
 
     @Column(name = "status")
-    private String status;  // Posibles estados: available, occupied, maintenance
-}
+    private String status;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "description") // Nueva columna para la descripción
+    private String description;
+}
