@@ -107,9 +107,9 @@ public class CustomerController {
 
     
     @GetMapping("valid/{email}")
-public Customer validCustomerByEmail(@PathVariable String email) throws ExcepcionRecursoNoEncontrado {
-    Customer customer = customerService.getCustomerByEmail(email);
-    return customer;
-}
+    public CustomerDTO validCustomerByEmail(@PathVariable String email) throws ExcepcionRecursoNoEncontrado {
+        CustomerDTO customer = customerService.getCustomerDTOByEmail(email);
+        return customer;
+    }
 
 }

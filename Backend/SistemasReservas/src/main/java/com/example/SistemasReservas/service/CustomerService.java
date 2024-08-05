@@ -108,9 +108,9 @@ public class CustomerService {
     }
 
     
-    public Customer getCustomerByEmail(String email) throws ExcepcionRecursoNoEncontrado {
+    public CustomerDTO getCustomerDTOByEmail(String email) throws ExcepcionRecursoNoEncontrado {
         Customer customer = customerRepository.findCustomerByEmail(email)
             .orElseThrow(() -> new ExcepcionRecursoNoEncontrado("El cliente con el correo " + email + " no fue encontrado"));
-        return customer;
+        return customerMapper.toCustomerDTO(customer);
     }
 }
